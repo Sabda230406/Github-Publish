@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partner In Crime: Pasukan Anti-Kalah</title>
-    <!-- Memuat ikon hati (dari FontAwesome, library gratis) -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Untuk Mayomi: Semangatttt! ❤️</title>
+    <!-- Memuat ikon FontAwesome untuk hati --><script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        /* Menggunakan font Poppins yang lebih elegan */
+        /* Menggunakan font Poppins yang modern dan bersih */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap');
         
         body {
             font-family: 'Poppins', sans-serif;
-            /* Gradient soft peach dan pink */
-            background: linear-gradient(135deg, #ffdde1 0%, #ffc0cb 100%); 
+            /* Gradient sunset pink-ungu yang lebih soft */
+            background: linear-gradient(135deg, #fce4ec 0%, #e0c3fc 100%); 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,53 +20,59 @@
             margin: 0;
             padding: 20px;
             text-align: center;
-            overflow: hidden; /* Mencegah scroll yang tidak perlu */
+            overflow: hidden; /* Penting untuk animasi hati */
+            position: relative; /* Untuk posisi hati */
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
-            backdrop-filter: blur(5px);
+            background-color: rgba(255, 255, 255, 0.98); /* Lebih putih & solid */
+            backdrop-filter: blur(10px); /* Blur lebih kuat */
             padding: 40px;
             border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4); /* Shadow pink yang lembut */
+            /* Shadow yang lebih mendalam dan lembut */
+            box-shadow: 0 20px 50px rgba(173, 216, 230, 0.6), 0 0 0 10px rgba(255, 255, 255, 0.5); 
             max-width: 90vw;
-            /* PERBAIKAN 1: Perbesar container jadi 650px */
-            width: 650px; 
+            width: 650px; /* Lebar container */
             transition: all 0.5s ease;
-            border: 2px solid #ff69b4; /* Garis tepi pink */
+            border: 2px solid #ffb6c1; /* Border pink muda */
+            z-index: 10; /* Pastikan di atas animasi hati */
+            position: relative;
         }
 
         header h1 {
-            color: #d33c7c; /* Pink gelap yang elegan */
-            font-size: 2.2rem;
+            color: #d81b60; /* Pink gelap yang romantis */
+            font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 5px;
+            /* Efek teks glow lembut */
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.3); 
         }
 
         header p {
             color: #888;
             font-weight: 300;
             margin-bottom: 30px;
+            font-style: italic;
         }
 
         .message-box {
-            min-height: 180px;
+            min-height: 200px; /* Sedikit lebih tinggi */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
-            background: #fff0f5; /* Background sangat soft pink */
+            background: linear-gradient(145deg, #fff0f5 0%, #ffebee 100%); /* Gradient soft pink */
             margin-bottom: 25px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* Shadow ke dalam */
         }
 
-        /* PERBAIKAN CSS di sini */
         .typing-text {
-            color: #4b0082; /* Ungu indigo yang kontras */
-            font-size: 1.3rem;
+            color: #6a0572; /* Ungu gelap yang elegan */
+            font-size: 1.4rem;
             font-weight: 600;
-            line-height: 1.7;
+            line-height: 1.8;
             min-height: 40px;
             border-right: 3px solid #ff69b4; 
             overflow: hidden;
@@ -80,7 +85,7 @@
         .typing-line {
             display: inline-block;
             overflow: hidden;
-            white-space: nowrap; /* Hanya berlaku untuk baris yang sedang diketik */
+            white-space: nowrap; 
             border-right: 3px solid #ff69b4;
             animation: blink-caret 0.75s step-end infinite;
             max-width: 100%; 
@@ -88,8 +93,9 @@
         
         .hidden {
             opacity: 0;
-            transition: opacity 1s ease;
+            transition: opacity 1s ease, height 1s ease;
             height: 0;
+            overflow: hidden;
         }
         
         /* Gaya Tombol Semangat */
@@ -97,20 +103,74 @@
             background-color: #ff69b4; /* Hot Pink */
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 15px 35px; /* Lebih besar */
             border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.6);
-            margin-top: 15px;
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+            margin-top: 20px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .cta-button:hover {
             background-color: #d33c7c;
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.8);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.8);
+        }
+
+        footer {
+            margin-top: 35px;
+        }
+
+        footer p {
+            color: #a0a0a0;
+            font-weight: 300;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        /* --- Animasi Hati --- */
+        .heart {
+            position: absolute;
+            bottom: -20px; /* Mulai dari bawah layar */
+            font-size: 1.5rem;
+            color: #ffb6c1; /* Pink lembut */
+            animation: fly-up 10s linear infinite; /* Animasi terbang ke atas */
+            opacity: 0;
+            pointer-events: none; /* Agar tidak menghalangi klik */
+            z-index: 5; /* Di bawah container */
+        }
+
+        @keyframes fly-up {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            80% {
+                transform: translateY(-1000px) scale(1.5); /* Terbang tinggi */
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-1200px) scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Animasi berdetak */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         /* Animasi cursor mengetik */
@@ -123,14 +183,17 @@
         @media (max-width: 600px) {
             .container {
                 padding: 25px;
-                /* Kecilkan lebar di mobile */
-                width: 90vw; 
+                width: 95vw; 
             }
             header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             .typing-text {
                 font-size: 1.1rem;
+            }
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
         }
     </style>
@@ -139,25 +202,22 @@
 
     <div class="container">
         <header>
-            <h1>Pasukan Anti-Kalah 🤣</h1>
+            <h1>Mayomi Semangatttt! <i class="fas fa-heart" style="color:#ff69b4;"></i></h1>
             <p>Pesan ini dibuat khusus untuk kamu, Partner In Crime-ku!</p>
         </header>
         
         <div class="message-box">
-            <!-- Tempat Pesan-pesan akan muncul bergantian -->
             <p id="msg1" class="typing-text"></p>
             <p id="msg2" class="typing-text hidden"></p>
             <p id="msg3" class="typing-text hidden"></p>
         </div>
 
         <button class="cta-button" onclick="showFinalMessage()">
-            <i class="fas fa-laugh-squint"></i> Klik Untuk Tambahan Semangat!
+            <i class="fas fa-hand-holding-heart"></i> Klik Untuk Tambahan Semangat!
         </button>
 
         <footer>
-            <p style="color: #a0a0a0; font-weight: 300; margin-top: 30px; font-size: 0.9rem;">
-                Dibuat oleh *sidekick*-mu, yang siap *back-up* kapan saja.
-            </p>
+            <p>Dibuat oleh *sidekick*-mu, yang siap *back-up* kapan saja.</p>
         </footer>
     </div>
 
@@ -183,7 +243,6 @@
                 const currentMessage = messages[messageIndex];
                 const currentElement = messageElements[messageIndex];
                 
-                // Tambahkan span khusus untuk efek mengetik dan kursor
                 if (!currentElement.querySelector('.typing-line')) {
                     currentElement.innerHTML = '<span class="typing-line"></span>';
                 }
@@ -191,38 +250,31 @@
                 
                 if (charIndex < currentMessage.length) {
                     currentElement.classList.remove('hidden');
-                    
                     typingLine.textContent += currentMessage.charAt(charIndex);
                     charIndex++;
-                    setTimeout(typeWriter, 40); // Kecepatan mengetik: 40ms
+                    setTimeout(typeWriter, 40); 
                 } else {
-                    // Setelah selesai, hapus efek mengetik/kursor agar bisa wrapping normal
                     typingLine.classList.remove('typing-line');
                     typingLine.style.borderRight = 'none';
                     typingLine.style.animation = 'none';
-
-                    // Pindahkan semua konten kembali ke elemen utama (tanpa span)
                     currentElement.textContent = currentMessage; 
                     
                     charIndex = 0;
                     messageIndex++;
                     
-                    // Jeda sebentar sebelum memulai pesan berikutnya
                     if (messageIndex < messages.length) {
                         setTimeout(() => {
                             typeWriter();
-                        }, 1800); // Jeda 1.8 detik
+                        }, 1800); 
                     }
                 }
             }
         }
 
-        // Fungsi yang dipanggil saat tombol Peluk Virtual diklik
         function showFinalMessage() {
             const button = document.querySelector('.cta-button');
             const messageBox = document.querySelector('.message-box');
             
-            // Hapus pesan lama
             messageBox.innerHTML = ''; 
 
             const finalMsg = document.createElement('p');
@@ -236,7 +288,7 @@
             finalMsg.appendChild(typingLine);
             messageBox.appendChild(finalMsg);
 
-            // PERBAIKAN 2: Tambahkan kalimat tentang tukang sayur
+            // Pesan final dengan kata-kata kocak tukang sayur
             const finalPesan = "Cukup! Kalau masih galau mikirin masa lalu, nanti aku kasih notifikasi spam tiap menit! Jangan galau sama Mas-mas tukang sayur dikasih seragam, Sayang! Dah, I love you, Pasukan Anti-Kalah! 💪😂";
             let finalIndex = 0;
 
@@ -247,9 +299,9 @@
                     setTimeout(typeFinal, 50);
                 } else {
                     typingLine.classList.remove('typing-line');
-                    typingLine.style.borderRight = 'none'; // Matikan cursor setelah selesai
+                    typingLine.style.borderRight = 'none'; 
                     typingLine.style.animation = 'none';
-                    finalMsg.textContent = finalPesan; // Pastikan teks penuh tampil dan wrapping
+                    finalMsg.textContent = finalPesan; 
                     button.textContent = "Siap, Boss! 😂";
                     button.disabled = true;
                     button.style.backgroundColor = '#4CAF50';
@@ -258,7 +310,26 @@
             typeFinal();
         }
 
-        // Jalankan fungsi setelah semua elemen dimuat
+        // --- Logika Animasi Hati ---
+        function createHeart() {
+            const heart = document.createElement('i');
+            heart.classList.add('fas', 'fa-heart', 'heart');
+            document.body.appendChild(heart);
+
+            heart.style.left = Math.random() * 100 + 'vw'; /* Posisi horizontal acak */
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's'; /* Durasi acak 5-10 detik */
+            heart.style.fontSize = Math.random() * 1 + 1 + 'rem'; /* Ukuran acak 1-2 rem */
+            heart.style.opacity = Math.random() * 0.5 + 0.3; /* Opacity acak */
+
+            // Hapus hati setelah animasi selesai
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Panggil fungsi createHeart setiap beberapa waktu
+        setInterval(createHeart, 300); /* Setiap 300ms, munculkan hati baru */
+
         document.addEventListener('DOMContentLoaded', () => {
             typeWriter();
         });
