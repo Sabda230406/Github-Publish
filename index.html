@@ -195,10 +195,30 @@
             100% { transform: scale(3); opacity: 0; }
         }
 
-        /* Responsif untuk layar kecil */
+        /* --- MOBILE RESPONSIVE FIX (DIBAWAH 600px) --- */
         @media (max-width: 600px) {
-            header h1 { font-size: 2rem; }
-            .typing-text { font-size: 1.1rem; }
+            .main-content {
+                padding: 25px 10px; /* Kurangi padding horizontal */
+                width: 95vw; 
+            }
+            header h1 { 
+                font-size: 2rem; 
+            }
+            .typing-text { 
+                font-size: 1.1rem; 
+                line-height: 1.6; /* Kurangi line-height sedikit */
+                padding: 0 5px; /* Tambahkan padding agar tidak terlalu mepet tepi */
+            }
+
+            .cta-button {
+                /* Perbaikan Utama: Mengurangi ukuran tombol agar muat */
+                padding: 10px 20px; 
+                font-size: 0.95rem; /* Ukuran font lebih kecil */
+                gap: 5px;
+                max-width: 90%; /* Pastikan tombol tidak lebih lebar dari 90% layar */
+                white-space: normal; /* Biarkan teks tombol pindah baris jika perlu */
+                height: auto; /* Biarkan tombol menyesuaikan tingginya */
+            }
             #fireworks-container h2 { font-size: 2rem; }
             #fireworks-container p { font-size: 1.2rem; }
         }
