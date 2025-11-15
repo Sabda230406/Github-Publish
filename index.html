@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Untuk Mayomi: Semangatttt! ❤️</title>
+    <title>Untuk Mayomi: SEMANGATTT! ❤️</title>
     <!-- Memuat ikon FontAwesome untuk hati --><script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         /* Menggunakan font Poppins yang modern dan bersih */
@@ -11,8 +11,16 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            /* Gradient sunset pink-ungu yang lebih soft */
-            background: linear-gradient(135deg, #fce4ec 0%, #e0c3fc 100%); 
+            /* Background kertas buku/diary (beige dengan garis) */
+            background-color: #f8f0e3; 
+            background-image: repeating-linear-gradient(
+                0deg,
+                #f5e8d5,
+                #f5e8d5 1px,
+                #f8f0e3 1px,
+                #f8f0e3 30px /* Jarak antar garis (simulasi baris buku) */
+            );
+            color: #1e3d59; /* Warna tinta */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,19 +28,18 @@
             margin: 0;
             padding: 20px;
             text-align: center;
-            overflow: hidden; /* Penting untuk animasi hati */
-            position: relative; /* Untuk posisi hati */
+            overflow: hidden; 
+            position: relative;
         }
 
-        /* PERUBAHAN: Hanya mengatur lebar dan centering untuk semua konten */
+        /* PERBAIKAN: Hanya mengatur lebar dan centering untuk semua konten, tanpa visual card */
         .main-content {
             max-width: 90vw;
-            width: 650px; 
+            width: 700px; /* Diperbesar sedikit agar lebih nyaman di layar kertas */
             transition: all 0.5s ease;
             z-index: 10;
             position: relative;
-            padding: 40px 20px; /* Padding tetap dipertahankan untuk jarak */
-            /* Hapus semua styling visual card/pembungkus */
+            padding: 40px 20px; 
         }
 
         header h1 {
@@ -40,24 +47,19 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 5px;
-            /* Efek teks glow lembut */
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Shadow lebih kuat agar menonjol di background */
-            background: white; /* Tambahkan background putih solid untuk header agar kontras */
-            padding: 10px 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            display: inline-block; /* Agar background hanya membungkus teks */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 5px rgba(0,0,0,0.1); 
+            padding: 10px 0; 
+            display: block; 
         }
 
         header p {
-            color: #444; /* Warna lebih gelap agar terlihat di background transparan */
+            color: #444; 
             font-weight: 600;
             margin-bottom: 30px;
             font-style: italic;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); /* Tambah shadow putih agar mudah dibaca */
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); 
         }
 
-        /* PERBAIKAN: Hapus elemen visual pembungkus */
         .message-box {
             min-height: 200px; 
             display: flex;
@@ -69,28 +71,27 @@
         }
 
         .typing-text {
-            color: #6a0572; /* Ungu gelap yang elegan */
+            color: #1e3d59; /* Warna tinta deep blue */
             font-size: 1.4rem;
             font-weight: 600;
             line-height: 1.8;
             min-height: 40px;
-            border-right: 3px solid #ff69b4; 
+            border-right: 3px solid #ff69b4; /* Kursor mengetik */
             overflow: hidden;
             width: 100%; 
             margin: 10px 0;
-            padding: 10px; /* Tambah padding agar teks tidak terlalu mepet */
-            background-color: rgba(255, 255, 255, 0.8); /* Tambah background transparan tipis agar teks lebih jelas */
-            border-radius: 10px;
+            padding: 0; 
+            background-color: transparent; 
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.9); 
             text-align: center;
+            /* Perubahan CSS untuk wrapping yang benar */
+            white-space: normal; 
         }
 
-        .typing-line {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap; 
-            border-right: 3px solid #ff69b4;
-            animation: blink-caret 0.75s step-end infinite;
-            max-width: 100%; 
+        /* Class yang ditambahkan saat teks selesai diketik (untuk menghilangkan kursor) */
+        .typed-done {
+            border-right: none !important;
+            animation: none !important;
         }
         
         .hidden {
@@ -105,7 +106,7 @@
             background-color: #ff69b4; /* Hot Pink */
             color: white;
             border: none;
-            padding: 15px 35px; /* Lebih besar */
+            padding: 15px 35px; 
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
@@ -131,24 +132,24 @@
         }
 
         footer p {
-            color: #666; /* Warna lebih gelap */
+            color: #666; 
             font-weight: 400;
             font-size: 0.9rem;
-            border-top: none; /* Hapus garis pemisah */
+            border-top: none; 
             padding-top: 15px;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); /* Agar tulisan footer jelas */
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); 
         }
 
-        /* --- Animasi Hati --- */
+        /* --- Animasi Hati UNGU --- */
         .heart {
             position: absolute;
-            bottom: -20px; /* Mulai dari bawah layar */
+            bottom: -20px; 
             font-size: 1.5rem;
-            color: #ffb6c1; /* Pink lembut */
-            animation: fly-up 10s linear infinite; /* Animasi terbang ke atas */
+            color: #a55eea; /* Ungu */
+            animation: fly-up 10s linear infinite; 
             opacity: 0;
-            pointer-events: none; /* Agar tidak menghalangi klik */
-            z-index: 5; /* Di bawah container */
+            pointer-events: none; 
+            z-index: 5; 
         }
 
         @keyframes fly-up {
@@ -160,20 +161,13 @@
                 opacity: 0.8;
             }
             80% {
-                transform: translateY(-1000px) scale(1.5); /* Terbang tinggi */
+                transform: translateY(-1000px) scale(1.5); 
                 opacity: 0.8;
             }
             100% {
                 transform: translateY(-1200px) scale(2);
                 opacity: 0;
             }
-        }
-
-        /* Animasi berdetak */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
 
         /* Animasi cursor mengetik */
@@ -205,7 +199,7 @@
 
     <div class="main-content">
         <header>
-            <h1>Mayomi Semangatttt! <i class="fas fa-heart" style="color:#ff69b4;"></i></h1>
+            <h1>SEMANGAT MAYOMIII! <i class="fas fa-heart" style="color:#ff69b4;"></i></h1>
             <p>Pesan ini dibuat khusus untuk kamu, Kekuatan Hatiku.</p>
         </header>
         
@@ -228,7 +222,7 @@
         // Pesan-pesan penyemangat yang akan muncul secara bergantian (KOCAK/LUCU)
         const messages = [
             "Hei! Stop *scroll* media sosial! Mantan itu kayak iklan *pop-up* di internet, harus di-blokir, bukan di-klik!",
-            "Wajah kamu itu terlalu *glowing* untuk dipakai galau. Kenapa fokus ke *ending* film yang udah kamu tonton, mending *spill* *season* barunya sama aku!",
+            "Wajah kamu itu terlalu *Cantik* untuk dipakai galau dan nangis. Kenapa fokus ke *ending* film yang udah kamu tonton, mending *spill* *season* barunya sama cowok baik di luar sana yang masih mau nerima kamu apa adanya!",
             "Tugas kamu sekarang cuma dua: ketawa 7 kali sehari, dan ingat, *level* kegalauan mantanmu itu udah *discontinued*. Kita udah *update* ke *versi* yang lebih keren!",
         ];
 
@@ -246,30 +240,24 @@
                 const currentMessage = messages[messageIndex];
                 const currentElement = messageElements[messageIndex];
                 
-                if (!currentElement.querySelector('.typing-line')) {
-                    currentElement.innerHTML = '<span class="typing-line"></span>';
-                }
-                const typingLine = currentElement.querySelector('.typing-line');
-                
                 if (charIndex < currentMessage.length) {
-                    currentElement.classList.remove('hidden');
-                    typingLine.textContent += currentMessage.charAt(charIndex);
+                    currentElement.classList.remove('hidden', 'typed-done');
+                    
+                    // Langsung append karakter. Browser otomatis handle wrapping.
+                    currentElement.textContent += currentMessage.charAt(charIndex);
                     charIndex++;
-                    // Kecepatan mengetik ditingkatkan (30ms)
                     setTimeout(typeWriter, 30); 
                 } else {
-                    typingLine.classList.remove('typing-line');
-                    typingLine.style.borderRight = 'none';
-                    typingLine.style.animation = 'none';
-                    currentElement.textContent = currentMessage; 
+                    // Teks selesai, hapus kursor
+                    currentElement.classList.add('typed-done'); 
                     
                     charIndex = 0;
                     messageIndex++;
                     
+                    // Jeda antar-pesan dipersingkat (1000ms)
                     if (messageIndex < messages.length) {
                         setTimeout(() => {
                             typeWriter();
-                        // Jeda antar-pesan dipersingkat (1000ms)
                         }, 1000); 
                     }
                 }
@@ -284,29 +272,20 @@
 
             const finalMsg = document.createElement('p');
             finalMsg.className = 'typing-text';
-
-            const typingLine = document.createElement('span');
-            typingLine.className = 'typing-line';
-            typingLine.style.borderRight = '3px solid #ff69b4';
-            typingLine.style.animation = 'blink-caret 0.75s step-end infinite';
-
-            finalMsg.appendChild(typingLine);
             messageBox.appendChild(finalMsg);
 
-            // Pesan final (KOCAK/LUCU)
-            const finalPesan = "Cukup! Kalau masih galau mikirin masa lalu, nanti aku kasih notifikasi spam tiap menit! Jangan galau, Sayang! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
+            // PESAN FINAL BARU DENGAN SANGKUT PAUT MANTAN
+            const finalPesan = "Jangan mikirin mantanmu terus, Sayang! Abuyy dia itu kayak mas-mas tukang sayur dikasih seragam aja. Jadi, fokus ke depan! Ada aku yang selalu nemenin kamu ketika kamu butuh cerita ya, Omayyy! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
             let finalIndex = 0;
 
             function typeFinal() {
                 if (finalIndex < finalPesan.length) {
-                    typingLine.textContent += finalPesan.charAt(finalIndex);
+                    finalMsg.classList.remove('typed-done'); // Pastikan kursor aktif
+                    finalMsg.textContent += finalPesan.charAt(finalIndex);
                     finalIndex++;
                     setTimeout(typeFinal, 50);
                 } else {
-                    typingLine.classList.remove('typing-line');
-                    typingLine.style.borderRight = 'none'; 
-                    typingLine.style.animation = 'none';
-                    finalMsg.textContent = finalPesan; 
+                    finalMsg.classList.add('typed-done'); // Hapus kursor
                     button.textContent = "Berhasil *Move On*! 😂";
                     button.disabled = true;
                     button.style.backgroundColor = '#4CAF50'; // Warna hijau semangat
@@ -332,8 +311,7 @@
             });
         }
 
-        // Panggil fungsi createHeart setiap beberapa waktu
-        setInterval(createHeart, 300); /* Setiap 300ms, munculkan hati baru */
+        setInterval(createHeart, 300); 
 
         document.addEventListener('DOMContentLoaded', () => {
             typeWriter();
