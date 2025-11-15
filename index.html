@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Sabduyyy Kopok ❤️</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Menggunakan font Inter yang modern dan bersih */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Gradient pink-ungu lembut */
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.5s ease;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            /* Shadow yang halus */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+            max-width: 90vw;
+            width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Efek melayang saat disentuh */
+        }
+
+        header h1 {
+            color: #d81b60; /* Merah muda gelap */
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .message-container {
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .typing-text {
+            color: #4a148c; /* Ungu gelap */
+            font-size: 1.2rem;
+            font-weight: 500;
+            line-height: 1.6;
+            min-height: 30px;
+            border-right: 3px solid #d81b60; /* Efek cursor untuk mengetik */
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            margin: 10px 0;
+            padding-right: 5px;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .heart-icon {
+            font-size: 3rem;
+            color: #ff527b;
+            margin-bottom: 15px;
+            /* Animasi berdetak */
+            animation: pulse 1.5s infinite; 
+        }
+
+        /* Animasi berdetak */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Animasi cursor mengetik */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #d81b60; }
+        }
+
+        /* Responsif untuk layar kecil */
+        @media (max-width: 600px) {
+            .card {
+                padding: 20px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .typing-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <header>
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h1>Hai, My Safe Place ❤️</h1>
+        </header>
+        
+        <div class="message-container">
+            <p id="msg1" class="typing-text"></p>
+            <p id="msg2" class="typing-text hidden"></p>
+            <p id="msg3" class="typing-text hidden"></p>
+        </div>
+
+        <footer>
+            <p style="color: #9c27b0; font-weight: 700; margin-top: 20px;">— Dariku, yang selalu percaya padamu.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Pesan-pesan penyemangat yang akan muncul secara bergantian
+        const messages = [
+            "Apapun yang kamu hadapi hari ini, ingatlah satu hal:",
+            "Kamu itu kuat, jauh lebih kuat dari yang kamu kira.",
+            "Semua akan berlalu, dan aku akan selalu ada di sisimu. Semangat!",
+        ];
+
+        const messageElements = [
+            document.getElementById('msg1'),
+            document.getElementById('msg2'),
+            document.getElementById('msg3'),
+        ];
+
+        let messageIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (messageIndex < messages.length) {
+                const currentMessage = messages[messageIndex];
+                const currentElement = messageElements[messageIndex];
+
+                if (charIndex < currentMessage.length) {
+                    // Tampilkan elemen saat mulai mengetik
+                    currentElement.classList.remove('hidden');
+                    currentElement.style.width = 'auto'; 
+
+                    // Tambahkan karakter satu per satu
+                    currentElement.textContent += currentMessage.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50); // Kecepatan mengetik: 50ms
+                } else {
+                    // Setelah selesai mengetik, lanjutkan ke pesan berikutnya
+                    currentElement.style.width = currentElement.scrollWidth + 'px';
+                    
+                    charIndex = 0;
+                    messageIndex++;
+                    
+                    // Jeda sebentar sebelum memulai pesan berikutnya
+                    if (messageIndex < messages.length) {
+                        setTimeout(typeWriter, 1500); // Jeda 1.5 detik
+                    }
+                }
+            }
+        }
+
+        // Jalankan fungsi setelah semua elemen dimuat
+        document.addEventListener('DOMContentLoaded', () => {
+            typeWriter();
+        });
+    </script>
+</body>
+</html>
