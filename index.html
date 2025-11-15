@@ -298,7 +298,7 @@
             }
         }
 
-        // --- FUNGSI BARU UNTUK TRANSISI HALAMAN ---
+        // --- FUNGSI UNTUK TRANSISI KE HALAMAN KEMBANG API (DIPANGGIL OLEH TOMBOL) ---
         function handleMoveOn() {
             const button = document.querySelector('.cta-button');
             const messageBox = document.querySelector('.message-box');
@@ -308,24 +308,24 @@
             button.disabled = true;
             button.style.backgroundColor = '#4CAF50'; 
 
-            // 2. Tampilkan pesan final di halaman pertama (sebelum transisi)
+            // 2. Tampilkan pesan final INSTAN
             messageBox.innerHTML = '';
             const finalPesan = "Jangan mikirin mantanmu terus, Sayang! Abuyy dia itu kayak mas-mas tukang sayur dikasih seragam aja. Jadi, fokus ke depan! Ada aku yang selalu nemenin kamu ketika kamu butuh cerita ya, Omayyy! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
             const finalMsg = document.createElement('p');
             finalMsg.className = 'typing-text';
-            finalMsg.style.borderRight = 'none'; // Langsung hilangkan kursor untuk pesan ini
-            finalMsg.textContent = finalPesan;
+            finalMsg.style.borderRight = 'none'; // Langsung hilangkan kursor
+            finalMsg.textContent = finalPesan; // Teks penuh langsung
             messageBox.appendChild(finalMsg);
             
-            // 3. Mulai transisi ke halaman kembang api
-            setTimeout(() => {
-                mainContent.style.opacity = 0; // Hilangkan konten lama
-            }, 3000); // Tunggu 3 detik setelah pesan final muncul
+            // 3. Mulai transisi ke halaman kembang api DENGAN CEPAT
+            // Set opacity ke 0 (fade out)
+            mainContent.style.opacity = 0; 
             
+            // Setelah fade out (1s), sembunyikan sepenuhnya dan panggil halaman kembang api
             setTimeout(() => {
-                mainContent.style.display = 'none'; // Sembunyikan sepenuhnya
+                mainContent.style.display = 'none'; 
                 showFireworksPage(); // Panggil halaman kembang api
-            }, 4000); // 4 detik total
+            }, 1000); // Tunggu 1 detik (sesuai transisi opacity)
         }
 
 
