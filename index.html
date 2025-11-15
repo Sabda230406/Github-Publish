@@ -238,7 +238,7 @@
             <p id="msg3" class="typing-text hidden"></p>
         </div>
 
-        <button class="cta-button" onclick="handleMoveOn()">
+        <button class="cta-button" onclick="launchFinalPhase()">
             <i class="fas fa-laugh-squint"></i> Berhasil *Move On*! 😂
         </button>
 
@@ -269,6 +269,8 @@
         
         const mainContent = document.getElementById('main-content');
         const fireworksContainer = document.getElementById('fireworks-container');
+        const ctaButton = document.querySelector('.cta-button'); // Ambil tombol secara global
+        const messageBox = document.querySelector('.message-box');
         const colors = ['#ff004c', '#ff8c00', '#ffff00', '#00ff7f', '#00c3ff', '#ff69b4', '#a55eea']; // Warna kembang api
 
         let messageIndex = 0;
@@ -297,8 +299,20 @@
                 }
             }
         }
+        
+        // --- FUNGSI KLIK 2: PINDAH KE HALAMAN KEMBANG API ---
+        function launchFireworks() {
+            // Set opacity ke 0 (fade out)
+            mainContent.style.opacity = 0; 
+            
+            // Setelah fade out (1s), sembunyikan sepenuhnya dan panggil halaman kembang api
+            setTimeout(() => {
+                mainContent.style.display = 'none'; 
+                showFireworksPage();
+            }, 1000);
+        }
 
-        // --- FUNGSI BARU UNTUK TYPING PESAN FINAL ---
+        // --- FUNGSI UNTUK TYPING PESAN FINAL (DIPANGGIL OLEH KLIK 1) ---
         function typeFinal(finalPesan, finalMsg) {
             let finalIndex = 0;
             const typingInterval = 30;
@@ -309,34 +323,33 @@
                     finalIndex++;
                     setTimeout(typeLoop, typingInterval);
                 } else {
-                    // SELESAI MENGETIK: Mulai transisi ke halaman kembang api
+                    // SELESAI MENGETIK: Aktifkan tombol untuk KLIK 2 (BAM!)
                     finalMsg.classList.add('typed-done'); // Hapus kursor
                     
-                    // Set opacity ke 0 (fade out)
-                    mainContent.style.opacity = 0; 
+                    // 1. Re-activate button
+                    ctaButton.disabled = false;
                     
-                    // Setelah fade out (1s), sembunyikan sepenuhnya dan panggil halaman kembang api
-                    setTimeout(() => {
-                        mainContent.style.display = 'none'; 
-                        showFireworksPage();
-                    }, 1000); 
+                    // 2. Change button text and style (Ready for BAM!)
+                    ctaButton.textContent = "KLIK SEKARANG untuk BAM! 💥";
+                    ctaButton.style.backgroundColor = '#4CAF50';
+                    ctaButton.style.boxShadow = '0 6px 20px rgba(76, 175, 80, 0.6)';
+                    
+                    // 3. Change button handler to launchFireworks (KLIK 2)
+                    ctaButton.onclick = launchFireworks; 
                 }
             }
             typeLoop();
         }
 
 
-        // --- FUNGSI DIPANGGIL OLEH TOMBOL (handleMoveOn) ---
-        function handleMoveOn() {
-            const button = document.querySelector('.cta-button');
-            const messageBox = document.querySelector('.message-box');
+        // --- FUNGSI KLIK 1: MEMULAI TYPING FINAL ---
+        function launchFinalPhase() {
             
-            // 1. Ganti teks tombol dan kunci
-            button.textContent = "Berhasil *Move On*! 😂";
-            button.disabled = true;
-            button.style.backgroundColor = '#4CAF50'; 
+            // 1. Disable button to prevent double-click during typing
+            ctaButton.disabled = true;
+            ctaButton.textContent = "Menulis Pesan Final...";
 
-            // 2. Siapkan wadah pesan final
+            // 2. Clear old messages and setup final message typing
             messageBox.innerHTML = '';
             const finalPesan = "Jangan mikirin mantanmu terus, Sayang! Abuyy dia itu kayak mas-mas tukang sayur dikasih seragam aja. Jadi, fokus ke depan! Ada aku yang selalu nemenin kamu ketika kamu butuh cerita ya, Omayyy! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
             const finalMsg = document.createElement('p');
@@ -346,8 +359,6 @@
             
             // 3. MULAI TYPING PESAN FINAL
             typeFinal(finalPesan, finalMsg);
-            
-            // CATATAN: Transisi ke halaman kembang api kini dipanggil di dalam fungsi typeFinal() setelah selesai mengetik.
         }
 
 
