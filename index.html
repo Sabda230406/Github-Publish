@@ -35,11 +35,14 @@
         /* PERBAIKAN: Hanya mengatur lebar dan centering untuk semua konten, tanpa visual card */
         .main-content {
             max-width: 90vw;
-            width: 700px; /* Diperbesar sedikit agar lebih nyaman di layar kertas */
-            transition: all 0.5s ease;
+            width: 700px; 
+            transition: opacity 1s ease; /* Transisi untuk menghapus konten lama */
             z-index: 10;
             position: relative;
             padding: 40px 20px; 
+            display: flex; /* Tambahkan flex untuk konten awal */
+            flex-direction: column;
+            align-items: center;
         }
 
         header h1 {
@@ -84,7 +87,6 @@
             background-color: transparent; 
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.9); 
             text-align: center;
-            /* Perubahan CSS untuk wrapping yang benar */
             white-space: normal; 
         }
 
@@ -96,11 +98,10 @@
         
         .hidden {
             opacity: 0;
-            transition: opacity 1s ease, height 1s ease;
-            height: 0;
-            overflow: hidden;
+            transition: opacity 0.5s ease;
+            display: none;
         }
-        
+
         /* Gaya Tombol Semangat */
         .cta-button {
             background-color: #ff69b4; /* Hot Pink */
@@ -127,19 +128,6 @@
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.8);
         }
 
-        footer {
-            margin-top: 35px;
-        }
-
-        footer p {
-            color: #666; 
-            font-weight: 400;
-            font-size: 0.9rem;
-            border-top: none; 
-            padding-top: 15px;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); 
-        }
-
         /* --- Animasi Hati UNGU --- */
         .heart {
             position: absolute;
@@ -152,52 +140,73 @@
             z-index: 5; 
         }
 
-        @keyframes fly-up {
-            0% {
-                transform: translateY(0) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            80% {
-                transform: translateY(-1000px) scale(1.5); 
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-1200px) scale(2);
-                opacity: 0;
-            }
+        /* --- KEMBANG API (FIREWORKS) STYLE --- */
+        #fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; /* Awalnya disembunyikan */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #1e002a; /* Latar belakang gelap untuk kembang api */
+            color: white;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
 
-        /* Animasi cursor mengetik */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #ff69b4; }
+        #fireworks-container h2 {
+            font-size: 3rem;
+            color: #ffcc00; /* Emas/Kuning terang */
+            text-shadow: 0 0 10px #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        #fireworks-container p {
+            font-size: 1.5rem;
+            color: white;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        /* Simulasi partikel kembang api (CSS Murni) */
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transform: scale(0.1);
+            animation: explode 1s ease-out forwards;
+        }
+
+        /* Animasi Kembang Api */
+        @keyframes fly-up {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            80% { transform: translateY(-1000px) scale(1.5); opacity: 0.8; }
+            100% { transform: translateY(-1200px) scale(2); opacity: 0; }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0.1); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
         }
 
         /* Responsif untuk layar kecil */
         @media (max-width: 600px) {
-            .main-content {
-                padding: 25px;
-                width: 95vw; 
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            .typing-text {
-                font-size: 1.1rem;
-            }
-            .cta-button {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
+            header h1 { font-size: 2rem; }
+            .typing-text { font-size: 1.1rem; }
+            #fireworks-container h2 { font-size: 2rem; }
+            #fireworks-container p { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="main-content">
+    <div class="main-content" id="main-content">
         <header>
             <h1>SEMANGAT MAYOMIII! <i class="fas fa-heart" style="color:#ff69b4;"></i></h1>
             <p>Pesan ini dibuat khusus untuk kamu, Kekuatan Hatiku.</p>
@@ -209,8 +218,8 @@
             <p id="msg3" class="typing-text hidden"></p>
         </div>
 
-        <button class="cta-button" onclick="showFinalMessage()">
-            <i class="fas fa-laugh-squint"></i> Klik Untuk Tambahan Semangat!
+        <button class="cta-button" onclick="handleMoveOn()">
+            <i class="fas fa-laugh-squint"></i> Berhasil *Move On*! 😂
         </button>
 
         <footer>
@@ -218,8 +227,14 @@
         </footer>
     </div>
 
+    <!-- Container untuk halaman Kembang Api -->
+    <div id="fireworks-container">
+        <h2>🎉 KAMU BERHASIL MAYOMI! 🎉</h2>
+        <p>Aku sangat bangga padamu karena sudah memilih kebahagiaanmu sendiri dan fokus ke depan. Kebahagiaan itu ada di sini, bersamaku! Selalu jadi yang terbaik, Sayangku!</p>
+    </div>
+
+
     <script>
-        // Pesan-pesan penyemangat yang akan muncul secara bergantian (KOCAK/LUCU)
         const messages = [
             "Hei! Stop *scroll* media sosial! Mantan itu kayak iklan *pop-up* di internet, harus di-blokir, bukan di-klik!",
             "Wajah kamu itu terlalu *Cantik* untuk dipakai galau dan nangis. Kenapa fokus ke *ending* film yang udah kamu tonton, mending *spill* *season* barunya sama cowok baik di luar sana yang masih mau nerima kamu apa adanya!",
@@ -231,6 +246,10 @@
             document.getElementById('msg2'),
             document.getElementById('msg3'),
         ];
+        
+        const mainContent = document.getElementById('main-content');
+        const fireworksContainer = document.getElementById('fireworks-container');
+        const colors = ['#ff004c', '#ff8c00', '#ffff00', '#00ff7f', '#00c3ff', '#ff69b4', '#a55eea']; // Warna kembang api
 
         let messageIndex = 0;
         let charIndex = 0;
@@ -242,19 +261,14 @@
                 
                 if (charIndex < currentMessage.length) {
                     currentElement.classList.remove('hidden', 'typed-done');
-                    
-                    // Langsung append karakter. Browser otomatis handle wrapping.
                     currentElement.textContent += currentMessage.charAt(charIndex);
                     charIndex++;
                     setTimeout(typeWriter, 30); 
                 } else {
-                    // Teks selesai, hapus kursor
                     currentElement.classList.add('typed-done'); 
-                    
                     charIndex = 0;
                     messageIndex++;
                     
-                    // Jeda antar-pesan dipersingkat (1000ms)
                     if (messageIndex < messages.length) {
                         setTimeout(() => {
                             typeWriter();
@@ -264,34 +278,65 @@
             }
         }
 
-        function showFinalMessage() {
+        // --- FUNGSI BARU UNTUK TRANSISI HALAMAN ---
+        function handleMoveOn() {
             const button = document.querySelector('.cta-button');
             const messageBox = document.querySelector('.message-box');
             
-            messageBox.innerHTML = ''; 
+            // 1. Ganti teks tombol dan kunci
+            button.textContent = "Berhasil *Move On*! 😂";
+            button.disabled = true;
+            button.style.backgroundColor = '#4CAF50'; 
 
+            // 2. Tampilkan pesan final di halaman pertama (sebelum transisi)
+            messageBox.innerHTML = '';
+            const finalPesan = "Jangan mikirin mantanmu terus, Sayang! Abuyy dia itu kayak mas-mas tukang sayur dikasih seragam aja. Jadi, fokus ke depan! Ada aku yang selalu nemenin kamu ketika kamu butuh cerita ya, Omayyy! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
             const finalMsg = document.createElement('p');
             finalMsg.className = 'typing-text';
+            finalMsg.style.borderRight = 'none'; // Langsung hilangkan kursor untuk pesan ini
+            finalMsg.textContent = finalPesan;
             messageBox.appendChild(finalMsg);
+            
+            // 3. Mulai transisi ke halaman kembang api
+            setTimeout(() => {
+                mainContent.style.opacity = 0; // Hilangkan konten lama
+            }, 3000); // Tunggu 3 detik setelah pesan final muncul
+            
+            setTimeout(() => {
+                mainContent.style.display = 'none'; // Sembunyikan sepenuhnya
+                showFireworksPage(); // Panggil halaman kembang api
+            }, 4000); // 4 detik total
+        }
 
-            // PESAN FINAL BARU DENGAN SANGKUT PAUT MANTAN
-            const finalPesan = "Jangan mikirin mantanmu terus, Sayang! Abuyy dia itu kayak mas-mas tukang sayur dikasih seragam aja. Jadi, fokus ke depan! Ada aku yang selalu nemenin kamu ketika kamu butuh cerita ya, Omayyy! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
-            let finalIndex = 0;
 
-            function typeFinal() {
-                if (finalIndex < finalPesan.length) {
-                    finalMsg.classList.remove('typed-done'); // Pastikan kursor aktif
-                    finalMsg.textContent += finalPesan.charAt(finalIndex);
-                    finalIndex++;
-                    setTimeout(typeFinal, 50);
-                } else {
-                    finalMsg.classList.add('typed-done'); // Hapus kursor
-                    button.textContent = "Berhasil *Move On*! 😂";
-                    button.disabled = true;
-                    button.style.backgroundColor = '#4CAF50'; // Warna hijau semangat
-                }
-            }
-            typeFinal();
+        function showFireworksPage() {
+            fireworksContainer.style.display = 'flex';
+            setTimeout(() => {
+                fireworksContainer.style.opacity = 1; // Transisi fade-in
+            }, 100); 
+
+            // Aktifkan animasi kembang api
+            setInterval(createFirework, 500); // Buat kembang api setiap 0.5 detik
+        }
+
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            
+            // Posisi kembang api acak
+            firework.style.left = Math.random() * 80 + 10 + 'vw';
+            firework.style.top = Math.random() * 60 + 20 + 'vh';
+            
+            // Warna kembang api acak
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.boxShadow = `0 0 50px 20px ${color}, 0 0 20px 5px ${color} inset`;
+            
+            fireworksContainer.appendChild(firework);
+
+            // Hapus partikel setelah animasi selesai
+            setTimeout(() => {
+                firework.remove();
+            }, 1000); 
         }
 
         // --- Logika Animasi Hati ---
@@ -299,13 +344,10 @@
             const heart = document.createElement('i');
             heart.classList.add('fas', 'fa-heart', 'heart');
             document.body.appendChild(heart);
-
-            heart.style.left = Math.random() * 100 + 'vw'; /* Posisi horizontal acak */
-            heart.style.animationDuration = Math.random() * 5 + 5 + 's'; /* Durasi acak 5-10 detik */
-            heart.style.fontSize = Math.random() * 1 + 1 + 'rem'; /* Ukuran acak 1-2 rem */
-            heart.style.opacity = Math.random() * 0.5 + 0.3; /* Opacity acak */
-
-            // Hapus hati setelah animasi selesai
+            heart.style.left = Math.random() * 100 + 'vw'; 
+            heart.style.animationDuration = Math.random() * 5 + 5 + 's'; 
+            heart.style.fontSize = Math.random() * 1 + 1 + 'rem'; 
+            heart.style.opacity = Math.random() * 0.5 + 0.3; 
             heart.addEventListener('animationend', () => {
                 heart.remove();
             });
