@@ -298,7 +298,35 @@
             }
         }
 
-        // --- FUNGSI UNTUK TRANSISI KE HALAMAN KEMBANG API (DIPANGGIL OLEH TOMBOL) ---
+        // --- FUNGSI BARU UNTUK TYPING PESAN FINAL ---
+        function typeFinal(finalPesan, finalMsg) {
+            let finalIndex = 0;
+            const typingInterval = 30;
+
+            function typeLoop() {
+                if (finalIndex < finalPesan.length) {
+                    finalMsg.textContent += finalPesan.charAt(finalIndex);
+                    finalIndex++;
+                    setTimeout(typeLoop, typingInterval);
+                } else {
+                    // SELESAI MENGETIK: Mulai transisi ke halaman kembang api
+                    finalMsg.classList.add('typed-done'); // Hapus kursor
+                    
+                    // Set opacity ke 0 (fade out)
+                    mainContent.style.opacity = 0; 
+                    
+                    // Setelah fade out (1s), sembunyikan sepenuhnya dan panggil halaman kembang api
+                    setTimeout(() => {
+                        mainContent.style.display = 'none'; 
+                        showFireworksPage();
+                    }, 1000); 
+                }
+            }
+            typeLoop();
+        }
+
+
+        // --- FUNGSI DIPANGGIL OLEH TOMBOL (handleMoveOn) ---
         function handleMoveOn() {
             const button = document.querySelector('.cta-button');
             const messageBox = document.querySelector('.message-box');
@@ -308,24 +336,18 @@
             button.disabled = true;
             button.style.backgroundColor = '#4CAF50'; 
 
-            // 2. Tampilkan pesan final INSTAN
+            // 2. Siapkan wadah pesan final
             messageBox.innerHTML = '';
             const finalPesan = "Jangan mikirin mantanmu terus, Sayang! Abuyy dia itu kayak mas-mas tukang sayur dikasih seragam aja. Jadi, fokus ke depan! Ada aku yang selalu nemenin kamu ketika kamu butuh cerita ya, Omayyy! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
             const finalMsg = document.createElement('p');
             finalMsg.className = 'typing-text';
-            finalMsg.style.borderRight = 'none'; // Langsung hilangkan kursor
-            finalMsg.textContent = finalPesan; // Teks penuh langsung
+            finalMsg.style.borderRight = '3px solid #ff69b4'; // Tampilkan kursor
             messageBox.appendChild(finalMsg);
             
-            // 3. Mulai transisi ke halaman kembang api DENGAN CEPAT
-            // Set opacity ke 0 (fade out)
-            mainContent.style.opacity = 0; 
+            // 3. MULAI TYPING PESAN FINAL
+            typeFinal(finalPesan, finalMsg);
             
-            // Setelah fade out (1s), sembunyikan sepenuhnya dan panggil halaman kembang api
-            setTimeout(() => {
-                mainContent.style.display = 'none'; 
-                showFireworksPage(); // Panggil halaman kembang api
-            }, 1000); // Tunggu 1 detik (sesuai transisi opacity)
+            // CATATAN: Transisi ke halaman kembang api kini dipanggil di dalam fungsi typeFinal() setelah selesai mengetik.
         }
 
 
