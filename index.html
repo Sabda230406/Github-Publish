@@ -24,19 +24,15 @@
             position: relative; /* Untuk posisi hati */
         }
 
-        .container {
-            background-color: rgba(255, 255, 255, 0.98); /* Lebih putih & solid */
-            backdrop-filter: blur(10px); /* Blur lebih kuat */
-            padding: 40px;
-            border-radius: 25px;
-            /* Shadow yang lebih mendalam dan lembut */
-            box-shadow: 0 20px 50px rgba(173, 216, 230, 0.6), 0 0 0 10px rgba(255, 255, 255, 0.5); 
+        /* PERUBAHAN: Hanya mengatur lebar dan centering untuk semua konten */
+        .main-content {
             max-width: 90vw;
-            width: 650px; /* Lebar container */
+            width: 650px; 
             transition: all 0.5s ease;
-            border: 2px solid #ffb6c1; /* Border pink muda */
-            z-index: 10; /* Pastikan di atas animasi hati */
+            z-index: 10;
             position: relative;
+            padding: 40px 20px; /* Padding tetap dipertahankan untuk jarak */
+            /* Hapus semua styling visual card/pembungkus */
         }
 
         header h1 {
@@ -45,27 +41,31 @@
             font-weight: 800;
             margin-bottom: 5px;
             /* Efek teks glow lembut */
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.3); 
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Shadow lebih kuat agar menonjol di background */
+            background: white; /* Tambahkan background putih solid untuk header agar kontras */
+            padding: 10px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: inline-block; /* Agar background hanya membungkus teks */
         }
 
         header p {
-            color: #888;
-            font-weight: 300;
+            color: #444; /* Warna lebih gelap agar terlihat di background transparan */
+            font-weight: 600;
             margin-bottom: 30px;
             font-style: italic;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); /* Tambah shadow putih agar mudah dibaca */
         }
 
+        /* PERBAIKAN: Hapus elemen visual pembungkus */
         .message-box {
-            min-height: 200px; /* Sedikit lebih tinggi */
+            min-height: 200px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #fff0f5 0%, #ffebee 100%); /* Gradient soft pink */
+            padding: 0;
             margin-bottom: 25px;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05); /* Shadow ke dalam */
         }
 
         .typing-text {
@@ -78,7 +78,9 @@
             overflow: hidden;
             width: 100%; 
             margin: 10px 0;
-            padding-right: 5px;
+            padding: 10px; /* Tambah padding agar teks tidak terlalu mepet */
+            background-color: rgba(255, 255, 255, 0.8); /* Tambah background transparan tipis agar teks lebih jelas */
+            border-radius: 10px;
             text-align: center;
         }
 
@@ -129,11 +131,12 @@
         }
 
         footer p {
-            color: #a0a0a0;
-            font-weight: 300;
+            color: #666; /* Warna lebih gelap */
+            font-weight: 400;
             font-size: 0.9rem;
-            border-top: 1px solid #eee;
+            border-top: none; /* Hapus garis pemisah */
             padding-top: 15px;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8); /* Agar tulisan footer jelas */
         }
 
         /* --- Animasi Hati --- */
@@ -181,7 +184,7 @@
 
         /* Responsif untuk layar kecil */
         @media (max-width: 600px) {
-            .container {
+            .main-content {
                 padding: 25px;
                 width: 95vw; 
             }
@@ -200,10 +203,10 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="main-content">
         <header>
             <h1>Mayomi Semangatttt! <i class="fas fa-heart" style="color:#ff69b4;"></i></h1>
-            <p>Pesan ini dibuat khusus untuk kamu, Partner In Crime-ku!</p>
+            <p>Pesan ini dibuat khusus untuk kamu, Kekuatan Hatiku.</p>
         </header>
         
         <div class="message-box">
@@ -213,20 +216,20 @@
         </div>
 
         <button class="cta-button" onclick="showFinalMessage()">
-            <i class="fas fa-hand-holding-heart"></i> Klik Untuk Tambahan Semangat!
+            <i class="fas fa-laugh-squint"></i> Klik Untuk Tambahan Semangat!
         </button>
 
         <footer>
-            <p>Dibuat oleh *sidekick*-mu, yang siap *back-up* kapan saja.</p>
+            <p>Dibuat oleh orang yang hatinya selalu bersamamu.</p>
         </footer>
     </div>
 
     <script>
-        // Pesan-pesan penyemangat yang akan muncul secara bergantian
+        // Pesan-pesan penyemangat yang akan muncul secara bergantian (KOCAK/LUCU)
         const messages = [
-            "Stop! HP kamu terdeteksi sedang galau, dan itu bukan karena *password* Wi-Fi! 😠",
-            "Mantan itu cuma *trailer* film yang udah *flop*, Sayang. Kenapa nonton *trailer* terus kalau *movie* utama kita baru mau tayang?",
-            "Yuk, balik badan! Fokus ke *upgrade* diri. Yang terbaik itu ada di depan, bukan di riwayat *chat* yang lalu. Aku di sini lho!",
+            "Hei! Stop *scroll* media sosial! Mantan itu kayak iklan *pop-up* di internet, harus di-blokir, bukan di-klik!",
+            "Wajah kamu itu terlalu *glowing* untuk dipakai galau. Kenapa fokus ke *ending* film yang udah kamu tonton, mending *spill* *season* barunya sama aku!",
+            "Tugas kamu sekarang cuma dua: ketawa 7 kali sehari, dan ingat, *level* kegalauan mantanmu itu udah *discontinued*. Kita udah *update* ke *versi* yang lebih keren!",
         ];
 
         const messageElements = [
@@ -252,7 +255,8 @@
                     currentElement.classList.remove('hidden');
                     typingLine.textContent += currentMessage.charAt(charIndex);
                     charIndex++;
-                    setTimeout(typeWriter, 40); 
+                    // Kecepatan mengetik ditingkatkan (30ms)
+                    setTimeout(typeWriter, 30); 
                 } else {
                     typingLine.classList.remove('typing-line');
                     typingLine.style.borderRight = 'none';
@@ -265,7 +269,8 @@
                     if (messageIndex < messages.length) {
                         setTimeout(() => {
                             typeWriter();
-                        }, 1800); 
+                        // Jeda antar-pesan dipersingkat (1000ms)
+                        }, 1000); 
                     }
                 }
             }
@@ -288,8 +293,8 @@
             finalMsg.appendChild(typingLine);
             messageBox.appendChild(finalMsg);
 
-            // Pesan final dengan kata-kata kocak tukang sayur
-            const finalPesan = "Cukup! Kalau masih galau mikirin masa lalu, nanti aku kasih notifikasi spam tiap menit! Jangan galau sama Mas-mas tukang sayur dikasih seragam, Sayang! Dah, I love you, Pasukan Anti-Kalah! 💪😂";
+            // Pesan final (KOCAK/LUCU)
+            const finalPesan = "Cukup! Kalau masih galau mikirin masa lalu, nanti aku kasih notifikasi spam tiap menit! Jangan galau, Sayang! Aku mencintaimu, Pasukan Anti-Galau! 💪😂";
             let finalIndex = 0;
 
             function typeFinal() {
@@ -302,9 +307,9 @@
                     typingLine.style.borderRight = 'none'; 
                     typingLine.style.animation = 'none';
                     finalMsg.textContent = finalPesan; 
-                    button.textContent = "Siap, Boss! 😂";
+                    button.textContent = "Berhasil *Move On*! 😂";
                     button.disabled = true;
-                    button.style.backgroundColor = '#4CAF50';
+                    button.style.backgroundColor = '#4CAF50'; // Warna hijau semangat
                 }
             }
             typeFinal();
