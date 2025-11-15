@@ -31,7 +31,8 @@
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(255, 105, 180, 0.4); /* Shadow pink yang lembut */
             max-width: 90vw;
-            width: 550px;
+            /* PERBAIKAN 1: Perbesar container jadi 650px */
+            width: 650px; 
             transition: all 0.5s ease;
             border: 2px solid #ff69b4; /* Garis tepi pink */
         }
@@ -69,9 +70,7 @@
             line-height: 1.7;
             min-height: 40px;
             border-right: 3px solid #ff69b4; 
-            /* Hapus white-space: nowrap; */
             overflow: hidden;
-            /* Atur lebar awal ke 100% dari parent untuk menahan wrapping */
             width: 100%; 
             margin: 10px 0;
             padding-right: 5px;
@@ -84,7 +83,6 @@
             white-space: nowrap; /* Hanya berlaku untuk baris yang sedang diketik */
             border-right: 3px solid #ff69b4;
             animation: blink-caret 0.75s step-end infinite;
-            /* Tambahkan max-width agar baris inline tidak memaksa keluar */
             max-width: 100%; 
         }
         
@@ -125,6 +123,8 @@
         @media (max-width: 600px) {
             .container {
                 padding: 25px;
+                /* Kecilkan lebar di mobile */
+                width: 90vw; 
             }
             header h1 {
                 font-size: 1.8rem;
@@ -236,8 +236,8 @@
             finalMsg.appendChild(typingLine);
             messageBox.appendChild(finalMsg);
 
-            // Ganti teks pesan terakhir yang kocak
-            const finalPesan = "Cukup! Kalau masih galau mikirin masa lalu, nanti aku kasih notifikasi spam tiap menit! Dah, I love you, Pasukan Anti-Kalah! Jangan buang waktu buat yang *enggak* penting! 💪😂";
+            // PERBAIKAN 2: Tambahkan kalimat tentang tukang sayur
+            const finalPesan = "Cukup! Kalau masih galau mikirin masa lalu, nanti aku kasih notifikasi spam tiap menit! Jangan galau sama Mas-mas tukang sayur dikasih seragam, Sayang! Dah, I love you, Pasukan Anti-Kalah! 💪😂";
             let finalIndex = 0;
 
             function typeFinal() {
